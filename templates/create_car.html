@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить Автомобиль</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'car.png' %}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="{% url 'index' %}">Главная</a>
+        <a href="{% url 'create_car' %}" class="button">Добавить Автомобиль</a>
+    </div>
+
+    <div class="container">
+        <h1>Добавить Новый Автомобиль</h1>
+
+        <form method="post" class="form-container">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="submit-button">Сохранить</button>
+        </form>
+    </div>
+</body>
+</html>

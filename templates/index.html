@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{% static 'car.png' %}">
+    <title>Автосалон</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="{% url 'index' %}">Главная</a>
+        <a href="{% url 'create_car' %}" class="button">Добавить автомобиль</a>
+    </div>
+    <div class="container">
+        <h1>Автосалон</h1>
+
+        <h2>Бренды</h2>
+        <ul>
+            {% for brand in brands %}
+                <li>{{ brand.name }} 
+                    <a class="edit-link" href="{% url 'edit_brand' brand.id %}">Редактировать</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h2>Цвета</h2>
+        <ul>
+            {% for color in colors %}
+                <li>{{ color.name }} 
+                    <a class="edit-link" href="{% url 'edit_color' color.id %}">Редактировать</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h2>Автомобили</h2>
+        <ul>
+            {% for car in cars %}
+                <li>{{ car.name }} - {{ car.brand.name }} - {{ car.color.name }} - {{ car.price }} - {{ car.date_manufacture }} - {{ car.count }} 
+                    <a class="edit-link" href="{% url 'edit_car' car.id %}">Редактировать</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
